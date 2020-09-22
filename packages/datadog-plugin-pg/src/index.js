@@ -36,6 +36,9 @@ function createWrapQuery (tracer, config) {
       const params = this.connectionParameters
 
       span.setTag('resource.name', statement)
+      if (config.rawQuery) {
+        span.setTag('resource.rawQuery', statement)
+      }
 
       if (params) {
         span.addTags({
